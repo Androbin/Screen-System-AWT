@@ -4,6 +4,8 @@ import de.androbin.shell.gfx.*;
 import java.awt.*;
 
 public final class AWTColorCrossfade extends AWTTransition {
+  private final float crossing;
+  
   private final float red;
   private final float green;
   private final float blue;
@@ -15,11 +17,23 @@ public final class AWTColorCrossfade extends AWTTransition {
   
   public AWTColorCrossfade( final float red, final float green, final float blue,
       final float crossing, final float duration ) {
-    super( crossing, duration );
+    super( duration );
+    
+    this.crossing = crossing;
     
     this.red = red;
     this.green = green;
     this.blue = blue;
+  }
+  
+  @ Override
+  public float getPauseTime() {
+    return crossing;
+  }
+  
+  @ Override
+  public float getResumeTime() {
+    return crossing;
   }
   
   @ Override

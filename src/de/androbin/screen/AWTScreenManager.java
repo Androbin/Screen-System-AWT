@@ -5,7 +5,7 @@ import de.androbin.shell.*;
 import de.androbin.shell.gfx.*;
 import java.awt.*;
 
-public class AWTScreenManager extends SmoothScreenManager<AWTTransition> implements AWTGraphics {
+public class AWTScreenManager extends SimpleSmoothScreenManager<AWTTransition> implements AWTGraphics {
   @ Override
   public void render( final Graphics2D g ) {
     if ( transit == null ) {

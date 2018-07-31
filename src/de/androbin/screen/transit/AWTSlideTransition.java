@@ -7,25 +7,27 @@ public final class AWTSlideTransition extends AWTTransition {
   private final int dx;
   private final int dy;
   
-  public AWTSlideTransition( final int dx, final int dy,
-      final float crossing, final float duration ) {
-    super( crossing, duration );
+  public AWTSlideTransition( final int dx, final int dy, final float duration ) {
+    super( duration );
     
     this.dx = dx;
     this.dy = dy;
   }
   
   @ Override
+  public float getPauseTime() {
+    return 0.5f * duration;
+  }
+  
+  @ Override
+  public float getResumeTime() {
+    return 0.5f * duration;
+  }
+  
+  @ Override
   public void render( final Graphics2D g, final int width, final int height,
       final AWTGraphics graphics0, final AWTGraphics graphics1 ) {
-    final float time = getTime();
-    final float progress;
-    
-    if ( time < crossing ) {
-      progress = 0.5f * time / crossing;
-    } else {
-      progress = 0.5f + 0.5f * ( time - crossing ) / ( duration - crossing );
-    }
+    final float progress = getTime() / duration;
     
     render( g, width, height, graphics0, progress );
     render( g, width, height, graphics1, progress - 1f );
